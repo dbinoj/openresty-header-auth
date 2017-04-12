@@ -18,11 +18,11 @@ local function return_four_not_one(msg)
     ngx.req.discard_body()
     ngx.header["Content-type"] = "application/json"
     ngx.status = ngx.HTTP_UNAUTHORIZED
-    ngx.say('{"status":"KO","host": "' .. ngx.var.host .. '","error":"' .. msg .. '"}')
+    ngx.say('{"error":"' .. msg .. '"}')
     ngx.exit(ngx.HTTP_UNAUTHORIZED)
 end
 
-local header = ngx.req.get_headers()['apiKey']
+local header = ngx.req.get_headers()['api-key']
 
 if header == nil then
     return_four_not_one('API Key is missing.')
